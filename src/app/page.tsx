@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="">
       <NavBar />
-      <div className="border-y border-[#efefef] mt-4 py-4 lg:px-20 px-6 overflow-auto flex gap-4">
+      <div className="border-y border-gray mt-4 py-4 lg:px-20 px-6 overflow-auto flex gap-4">
         <MenuCard label="Groceries" />
         <MenuCard label="Premium fruits" />
         <MenuCard label="fashion" />
