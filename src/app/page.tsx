@@ -6,7 +6,6 @@ import { AppDispatch } from "@/store/store";
 import { fetchProducts } from "@/store/slice/ProductSlice";
 import NavBar from "@/components/NavBar";
 import MenuCard from "@/components/MenuCard";
-import Hero from "@/components/Hero";
 
 export default function Home() {
   // const { items, loading } = useSelector((state: RootState) => state.products);
@@ -25,10 +24,6 @@ export default function Home() {
         <MenuCard label="fashion" />
         <MenuCard label="electronics" />
       </div>
-      <div>
-        <Hero />
-      </div>
     </div>
-    
   );
 }
