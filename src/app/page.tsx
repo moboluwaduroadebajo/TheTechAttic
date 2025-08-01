@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
 import { fetchProducts } from "@/store/slice/ProductSlice";
 import NavBar from "@/components/NavBar";
 import MenuCard from "@/components/MenuCard";
+import Hero from "@/components/Hero";
 
 export default function Home() {
-  const { items, loading } = useSelector((state: RootState) => state.products);
+  // const { items, loading } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -24,6 +25,10 @@ export default function Home() {
         <MenuCard label="fashion" />
         <MenuCard label="electronics" />
       </div>
+      <div>
+        <Hero />
+      </div>
     </div>
+    
   );
 }
