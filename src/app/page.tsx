@@ -6,6 +6,8 @@ import { AppDispatch } from "@/store/store";
 import { fetchProducts } from "@/store/slice/ProductSlice";
 import NavBar from "@/components/NavBar";
 import MenuCard from "@/components/MenuCard";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   // const { items, loading } = useSelector((state: RootState) => state.products);
@@ -15,15 +17,32 @@ export default function Home() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  const categories = [
+    {
+      label: "Groceries",
+    },
+    {
+      label: "Fashion",
+    },
+    {
+      label: "Electronics",
+    },
+    {
+      label: "Food",
+    },
+  ];
+
   return (
-    <div className="">
+    <div>
       <NavBar />
       <div className="border-y border-gray mt-4 py-4 lg:px-20 px-6 overflow-auto flex gap-4">
-        <MenuCard label="Groceries" />
-        <MenuCard label="Premium fruits" />
-        <MenuCard label="fashion" />
-        <MenuCard label="electronics" />
+        {categories.map((category, index) => (
+          <MenuCard key={index} label={category.label} />
+        ))}
       </div>
+      <Hero />
+
+      <Footer />
     </div>
   );
 }
