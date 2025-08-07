@@ -5,10 +5,8 @@ import HeroWatch from "../../public/hero-watch.png";
 function Hero() {
   return (
     <div
-      className="flex flex-col md:flex-row items-center justify-between px-6 py-12  rounded-2xl m-8 gap-x-4"
-      style={{ backgroundImage: "url('/bg-2.jpeg')" }}
-    >
-      <div className="flex-1 pl-10">
+      className="flex flex-col md:flex-row items-center justify-between px-6 py-12  rounded-2xl m-8 gap-x-4  bg-[url(/bg-2.jpeg)]">
+      <div className="flex-1 pl-8">
         <p className="text-sm text-white">Best Deal Online on smart Watches</p>
         <h1 className="text-3xl md:text-4xl font-bold text-white mt-2">
           SMART WEARABLE.
@@ -23,12 +21,7 @@ function Hero() {
         <Image
           src={HeroWatch}
           alt="Smart watch"
-          className="w-40 h-40"
-          style={{
-            animation: "spinY 8s linear infinite",
-            transformStyle: "preserve-3d",
-          }}
-        />
+          className="w-48 h-48 transform-3d animate-[spinY_8s_linear_infinite]"/>
       </div>
     </div>
   );
