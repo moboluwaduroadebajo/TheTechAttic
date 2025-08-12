@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
+import { useDispatch,useSelector} from "react-redux";
+import { AppDispatch,RootState} from "@/store/store";
 import { fetchProducts } from "@/store/slice/ProductSlice";
 import NavBar from "@/components/NavBar";
 import MenuCard from "@/components/MenuCard";
@@ -13,7 +13,7 @@ import ProductCard from "@/components/ProductCard";
 import Phone from "../../public/phone.png";
 
 export default function Home() {
-  // const { items, loading } = useSelector((state: RootState) => state.products);
+  const { items, loading } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -44,8 +44,21 @@ export default function Home() {
         ))}
       </div>
       <Hero />
-      <Tab mainText="Grab the best deal on " linkText="Smartphones" />
-      <ProductCard image={Phone} title="Iphone 16 series" price="$1200" oldPrice="$2400" save="$600"/>
+      <Tab mainText="Grab the best deal on " spanText="Smartphones" />
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 ">
+        {items.map((product) => (
+        <ProductCard 
+        key={product.id}
+        image={Phone} 
+        title={product.title} 
+        price={product.price} 
+        oldPrice="$2400" 
+        save="$600"/>
+      )
+    )}
+      </div>
+      
+      
       <Footer />
     </div>
   );
