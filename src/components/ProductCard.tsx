@@ -19,8 +19,8 @@ const ProductCard = ({
   return (
     <div className="gap-2 p-4 ">
     <div className="border rounded-lg w-40 h-68 ml-12 border-2 border-gray-200 pb-12 mb-8 hover:border-blue-700 transition-colors duration-300">
-      <div className="w-full h-full bg-gray-200 rounded-md">
-        <Image src={image} alt={title}  className="w-36 h-36" />
+      <div className="w-inherit h-40 bg-gray-200 rounded-md">
+        <Image src={image} alt={title}  className="w-full h-full" />
       </div>
         <div>
         <h3 className="text-[10px] text-gray-800 text-left ml-2">{title}</h3>
