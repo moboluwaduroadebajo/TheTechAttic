@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useDispatch,useSelector} from "react-redux";
-import { AppDispatch,RootState} from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import { fetchProducts } from "@/store/slice/ProductSlice";
 import NavBar from "@/components/NavBar";
 import MenuCard from "@/components/MenuCard";
@@ -34,6 +34,7 @@ export default function Home() {
       label: "Food",
     },
   ];
+  console.log("items", items);
 
   return (
     <div>
@@ -47,18 +48,17 @@ export default function Home() {
       <Tab mainText="Grab the best deal on " spanText="Smartphones" />
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 ">
         {items.map((product) => (
-        <ProductCard 
-        key={product.id}
-        image={Phone} 
-        title={product.title} 
-        price={product.price} 
-        oldPrice="$2400" 
-        save="$600"/>
-      )
-    )}
+          <ProductCard
+            key={product.id}
+            image={product.image}
+            title={product.title}
+            price={product.price}
+            oldPrice="$2400"
+            save="$600"
+          />
+        ))}
       </div>
-      
-      
+
       <Footer />
     </div>
   );
