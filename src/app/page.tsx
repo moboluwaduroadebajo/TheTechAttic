@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Tab from "@/components/Tab";
 import ProductCard from "@/components/ProductCard";
-import Phone from "../../public/phone.png";
 
 export default function Home() {
   const { items, loading } = useSelector((state: RootState) => state.products);
