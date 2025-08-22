@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Tab from "@/components/Tab";
 import ProductCard from "@/components/ProductCard";
-import Phone from "../../public/phone.png";
 
 export default function Home() {
   const { items, loading } = useSelector((state: RootState) => state.products);
@@ -45,8 +44,8 @@ export default function Home() {
         ))}
       </div>
       <Hero />
-      <Tab mainText="Grab the best deal on " spanText="Smartphones" />
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 ">
+      <Tab mainText="Grab the best deal on " spanText="Products" />
+      <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {items.map((product) => (
           <ProductCard
             key={product.id}
