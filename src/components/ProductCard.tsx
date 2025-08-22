@@ -17,19 +17,19 @@ const ProductCard = ({
   save,
 }: ProductCardProps) => {
   return (
-    <div className="gap-2 p-4 ">
-      <div className="rounded-lg w-full h-68 ml-12 border-2 border-gray-200 pb-12 mb-8 hover:border-blue-700 transition-colors duration-300 shadow-md">
-        <div className="w-inherit h-40 bg-gray-200 rounded-md">
+    <div className="p-4">
+      <div className="rounded-lg w-full h-68 border-2 border-gray-200 pb-12 mb-8 hover:border-blue-700 transition-colors duration-300 shadow-md">
+        <div className="w-full h-40 bg-gray-200 rounded-md flex items-center justify-center">
           <Image
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
-            width={100}
-            height={100}
+            className="max-w-full max-h-full object-cover"
+            width={9g0}
+            height={90}
           />
         </div>
 
-        <div>
+        <div className="py-4">
           <h3 className="text-[10px] text-gray-800 text-left ml-2">{title}</h3>
           <div className="flex items-center gap-2 mt-1 border-b-1 m-2 border-gray-200 ">
             <span className="text-[10px] text-gray-800 text-left font-bold">
