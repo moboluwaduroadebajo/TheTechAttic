@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  addToCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/store/slice/CartSlice";
 import { fetchProductsByID } from "@/store/slice/ProductSlice";
 import { AppDispatch, RootState } from "@/store/store";
 import Image from "next/image";
@@ -13,12 +18,19 @@ export default function ProductDetails() {
   const dispatch = useDispatch<AppDispatch>();
 
   const { selectedProduct } = useSelector((state: RootState) => state.products);
+  const { items } = useSelector((state: RootState) => state.cart);
+
+  const cartItem = items.find((item) => item.id === selectedProduct?.id);
 
   useEffect(() => {
     if (productId) {
       dispatch(fetchProductsByID(Number(productId)));
     }
   }, [dispatch, productId]);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(selectedProduct!));
+  };
 
   return (
     <div className="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -68,9 +80,38 @@ export default function ProductDetails() {
 
         {/* Buttons */}
         <div className="flex gap-4">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-            Add to Cart
-          </button>
+          {!cartItem ? (
+            <button
+              className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <div className="flex items-center gap-5 ">
+              <button
+                className={`size-8 bg-primary text-white rounded-md text-xl font-bold cursor-pointer ${
+                  cartItem.quantity < 1 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => {
+                  dispatch(decreaseQuantity(cartItem.id));
+                }}
+              >
+                -
+              </button>
+              <span>{cartItem.quantity}</span>
+              <button
+                className={`${
+                  cartItem.quantity >= 10 ? "opacity-50 cursor-not-allowed" : ""
+                } size-8 bg-primary text-white rounded-md text-xl font-bold cursor-pointer`}
+                onClick={() => {
+                  dispatch(increaseQuantity(cartItem.id));
+                }}
+              >
+                +
+              </button>
+            </div>
+          )}
           <button className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700">
             Buy Now
           </button>
