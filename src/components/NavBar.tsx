@@ -1,27 +1,36 @@
 "use client";
 
+import { setSearchQuery } from "@/store/slice/ProductSlice";
 import { RootState } from "@/store/store";
+import Link from "next/link";
 import React from "react";
 import { Menu, ShoppingCart, User } from "react-feather";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.cart);
+  const { searchQuery } = useSelector((state: RootState) => state.products);
 
   const totalCart = items.reduce((total, item) => total + item.quantity, 0);
   return (
     <div className="lg:px-20 px-6 lg:py-10 py-5">
       <nav className="flex items-center justify-between">
-        <div className="text-primary md:text-2xl text-xl font-extrabold flex items-center gap-3">
+        <Link
+          href={"/"}
+          className="text-primary md:text-2xl text-xl font-extrabold flex items-center gap-3"
+        >
           <span className="bg-primary-50 p-2 rounded-xl">
             <Menu />
           </span>
           MegaMart
-        </div>
+        </Link>
 
         <div className="hidden lg:flex items-center justify-end gap-4 w-[60%]">
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             placeholder="Search"
             className="bg-primary-50 rounded-xl p-3.5 w-1/2"
           />
