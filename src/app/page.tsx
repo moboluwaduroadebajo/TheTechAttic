@@ -13,8 +13,14 @@ import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
 export default function Home() {
-  const { items } = useSelector((state: RootState) => state.products);
+  const { items, searchQuery } = useSelector(
+    (state: RootState) => state.products
+  );
   const dispatch = useDispatch<AppDispatch>();
+
+  const filteredItems = items.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -33,7 +39,7 @@ export default function Home() {
       <Hero />
       <Tab mainText="Grab the best deal on " spanText="Products" />
       <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {items.map((product) => (
+        {filteredItems.map((product) => (
           <Link href={`/product/${product.id}`} key={product.id}>
             <ProductCard
               image={product.image}
